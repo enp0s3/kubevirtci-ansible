@@ -1,0 +1,5 @@
+[test]
+localhost
+
+[build_host]
+zeus36.lab.eng.tlv2.redhat.com

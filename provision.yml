@@ -1,0 +1,15 @@
+---
+ - name: Build the VM container
+   hosts: 
+   roles:
+    - create_container
+
+ - name: Configure the VM guest OS for our k8s needs
+   hosts:
+   roles:
+    - configure_vm
+
+ - name: Create k8s clutser of containers
+   hosts:
+   roles:
+    - bringup_containers

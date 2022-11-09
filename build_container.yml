@@ -1,0 +1,26 @@
+---
+ - name: build the VM based provider container
+   gather_facts: no
+   hosts: build_host
+   tasks:
+    - name: create the build directory
+      file:
+        path: /root/demo-dockerfile
+        state: directory
+        owner: root
+        group: root
+        mode: '0755'
+    - name: Copy the dockerfile
+      copy:
+        src: templates/Dockerfile.j2
+        dest: /root/demo-dockerfile/Dockerfile
+        owner: root
+        group: root
+        mode: '0755'
+    - name: build docker image
+      community.docker.docker_image:
+        name: democontainer:v1.0
+        build:
+          path: /root/demo-dockerfile
+          source: build
+        state: present
